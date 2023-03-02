@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+   name: ghost-deployment
+   labels: 
+      type: cmd
+spec: 
+   replicas: 2
+   selector: 
+      matchLabels: 
+         type: cmd
+   template: 
+      metadata: 
+         name: ghost-pod
+         labels: 
+            type: cmd
+      spec: 
+         containers: 
+          - name: myghost
+            image: ghost
+            ports: 
+               - containerPort: 2368
+                 hostPort: 9090
+            env: 
+               - name: NODE_ENV
+                 value: development
+...

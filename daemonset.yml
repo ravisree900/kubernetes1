@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: 
+   name: nginx-daemon
+   labels: 
+      type: nginx-app
+spec: 
+   selector: 
+      matchLabels: 
+         type: nginx-app
+   template: 
+      metadata: 
+         name: nginx-pod
+         labels: 
+            type: nginx-app
+      spec: 
+         containers: 
+            - name: mynginx
+              image: nginx
+
+---
+apiVersion: v1
+kind: Service
+metadata: 
+   name: nginx-service
+   labels: 
+      type: nginx-app
+spec: 
+   type: LoadBalancer
+   selector: 
+      type: nginx-app
+   ports: 
+     - targetPort: 80
+       port: 80
+...

@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+   name: jenkins
+   labels: 
+      type: proxy
+      author: ravindra
+spec: 
+   containers: 
+    - name: myjenkins
+      image: jenkins/jenkins
+      ports: 
+        - containerPort: 8080
+          hostPort: 9090
+...

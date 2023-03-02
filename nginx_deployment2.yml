@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+   name: nginx-deployment
+   labels: 
+      author: ravindra
+      type: proxy
+spec: 
+   selector: 
+      matchLabels: 
+         type: proxy
+   template: 
+      metadata: 
+         name: nginx-deployment
+         labels: 
+            type: proxy
+      spec: 
+         containers: 
+            - name: mynginx
+              image: nginx
+...
